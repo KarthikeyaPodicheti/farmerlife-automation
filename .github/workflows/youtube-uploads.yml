@@ -44,11 +44,17 @@ jobs:
         with open('service-account-key.json', 'wb') as f:
             f.write(base64.b64decode(service_account))
 
-        print("✅ Credentials created successfully")
+        # Decode token.pickle (YOUTUBE_TOKEN)
+        youtube_token = os.environ['YOUTUBE_TOKEN'].strip()
+        with open('token.pickle', 'wb') as f:
+            f.write(base64.b64decode(youtube_token))
+
+        print("✅ All credentials created successfully")
         EOF
       env:
         GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
         GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
+        YOUTUBE_TOKEN: ${{ secrets.YOUTUBE_TOKEN }}
 
     - name: Run FARMERLIFE2.0 upload script
       run: python upload_scheduled.py
