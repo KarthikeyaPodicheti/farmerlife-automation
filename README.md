@@ -1,68 +1,72 @@
 # 🚜 FARMERLIFE2.0 YouTube Automation
 
-![Status](https://img.shields.io/badge/Status-Active-success)
-![Platform](https://img.shields.io/badge/Platform-YouTube-red)
-![Automation](https://img.shields.io/badge/Automation-GitHub_Actions-blue)
+![Python](https://img.shields.io/badge/python-3.11-blue.svg)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232088FF.svg?logo=githubactions&logoColor=white)
+![YouTube API](https://img.shields.io/badge/YouTube%20Data%20API%20v3-red?logo=youtube&logoColor=white)
+![Google Drive](https://img.shields.io/badge/Google%20Drive%20API-4285F4?logo=googledrive&logoColor=white)
 
-A complete, fully automated workflow system designed to consistently upload engaging, high-retention video content to the **[FARMERLIFE2.0](https://www.youtube.com/@FARMERLIFE2.0-n7v)** YouTube channel.
+A high-performance, fully automated system for managing YouTube content distribution. This project synchronizes cloud storage assets with YouTube, utilizing advanced content strategies to maximize engagement and channel growth.
 
-This repository leverages Python scripts combined with GitHub Actions to autonomously download video content from Google Drive, optimize the metadata for YouTube Shorts algorithms, and schedule publication completely hands-free.
+## 📺 Target Channel
+**FARMERLIFE2.0**: [View Channel](https://www.youtube.com/@FARMERLIFE2.0-n7v)
+
+---
+
+## � Features & Architecture
+
+- **Autonomous Distribution:** Fully automated 3x daily upload schedule via GitHub Actions.
+- **Cloud Synchronization:** Deep integration with Google Drive for seamless asset management.
+- **Smart Tracking:** Comprehensive JSON-based state management to prevent duplicate uploads and track performance.
+- **Dynamic Optimization:** Real-time generation of SEO-optimized metadata, including curiosity-gap titles and high-retention descriptions.
+- **Secure Auth:** Enterprise-grade security using OAuth 2.0 and encrypted GitHub Secrets for credential management.
+
+## 📁 System Integration
+
+### Google Drive
+- **Source Folder:** [Drive Assets](https://drive.google.com/drive/folders/1kocgFg0rzsMCtXsrWiOH_oditWshBpbV)
+- **Handler:** Service Account integration for secure read access to high-quality video files.
+
+### 📊 Upload Schedule (IST)
+
+| Time (IST) | Cron Strategy | Goal |
+|:---|:---|:---|
+| **10:30 AM** | `0 5 * * *` | Peak Morning Browsing |
+| **02:00 PM** | `30 8 * * *` | Afternoon Engagement |
+| **09:30 PM** | `0 16 * * *` | Prime Time Viewership |
 
 ---
 
-## 🌟 Key Features
+## 🎬 Content Strategy (v2.0)
 
-- **Automated Scheduling pipeline:** Deploys 3 optimized uploads daily via GitHub Actions.
-- **Dynamic Content Selection:** Connects securely to a source Google Drive and randomly selects videos that have not yet been published.
-- **Advanced Title Engine:** Utilizes psychologically triggering, evergreen titles optimized for high CTR and viewer curiosity.
-- **Algorithm-Optimized Descriptions:** Automatically attaches high-retention descriptions and SEO-targeted tags for the YouTube Shorts feed.
-- **Duplicate Prevention Logging:** Strictly logs every upload ID to a JSON ledger to ensure identical videos are never uploaded twice.
-- **Continuous Authentication:** Features a self-refreshing OAuth flow ensuring uninterrupted scheduled actions without manual login prompts.
+Our distribution strategy leverages modern psychological triggers and the "Curiosity Gap" to maximize CTR (Click-Through Rate) and retention for YouTube Shorts.
 
-## 📊 Deployment Schedule
+### 1. Evergreen Storytelling
+Titles are engineered to be universally applicable to farming, animals, and rural life content, ensuring a perfect match even with randomized selection.
 
-Uploads occur thrice daily on strict predefined intervals (Indian Standard Time):
+### 2. Psychological Triggers
+- **Emotional Hooks:** Frequent use of high-impact emojis (😭, 🤯) to signal emotional stakes.
+- **Knowledge Gaps:** Using phrases that demand a click to resolve, such as *"Wait for the end"* or *"Then what happened"*.
 
-| Upload Phase | Time (IST) | Cron Trigger (UTC) |
-|--------------|------------|--------------------|
-| 🌅 Morning   | 10:30 AM   | `0 5 * * *`       |
-| 🏙️ Afternoon | 2:00 PM    | `30 8 * * *`      |
-| 🌃 Evening   | 9:30 PM    | `0 16 * * *`      |
-
-*To run manually, navigate to the **Actions** tab on GitHub and trigger via `workflow_dispatch`.*
-
-## 🎬 Content Strategy & Target Metrics
-
-**YouTube Channel:** [FARMERLIFE2.0](https://www.youtube.com/@FARMERLIFE2.0-n7v)  
-**Content Niche:** Farming, Agriculture, Rural Life, Animals  
-
-The automation now enforces a modernized **curiosity gap** strategy, replacing generic titles with narrative hooks designed to stall scrolling behavior. 
-
-**Titling Psychology Examples:**
-- *"You won't believe what happened in the village today 😭"*
-- *"Watch what this animal did to save the farm 😭"*
-- *"They found this while digging the farm dirt 🤯"*
-
-## 🔧 Technical Overview & Architecture
-
-### Core Files
-- `upload_scheduled.py`: The main controller. Handles API interactions for both Google Drive indexing and YouTube API uploads. Injects generated metadata onto media.
-- `.github/workflows/youtube-uploads.yml`: The CI/CD instructions. Maps GitHub repository secrets cleanly into the temporary worker nodes used to fire the python script.
-
-### State & Tracking Ledger
-- `processed_videos.json`: Stores successfully handled Google Drive item IDs.
-- `upload_history.json`: Comprehensive structured logging containing file sizes, upload timestamps, and URLs.
-- `daily_upload_count.json`: Ratelimiting and analytical counter for the day's total payloads.
-
-### Authentication Strategy
-Keys are entirely handled via GitHub Secrets to secure cloud configurations:
-- **`GOOGLE_CLIENT_SECRET`** & **`GOOGLE_SERVICE_ACCOUNT`**
-- **`YOUTUBE_TOKEN`**
-
-## 🚀 Live Status
-
-📺 **Channel Link:** Subscribe and view at **[FARMERLIFE2.0](https://www.youtube.com/@FARMERLIFE2.0-n7v)**  
-🔄 **Workflow Health:** Monitor active runs under the Actions panel. Total historical uploads can be traced by reading the local `upload_history.json`.
+### 3. SEO Optimization
+- **Tags:** Targeted mix of niche-specific (`#farming`, `#agriculture`) and broad-reach (`#shorts`, `#viral`, `#satisfying`) tags.
+- **Description:** Optimized for the "Shorts Shelf" with call-to-actions (CTA) and subscription triggers.
 
 ---
-*Maintained by the FARMERLIFE2.0 Bot.*
+
+## 🔧 File Structure
+
+| File | Description |
+|:---|:---|
+| `upload_scheduled.py` | Core engine for API orchestration and upload logic. |
+| `processed_videos.json` | Persistent state log of processed Google Drive file IDs. |
+| `upload_history.json` | Detailed historical logs of every successful upload event. |
+| `daily_upload_count.json` | Daily performance tracking and quota management. |
+| `token.pickle` | Authenticated YouTube session (automatically refreshed). |
+
+---
+
+## 🚀 Automation Health
+
+The system is currently **ACTIVE**. You can monitor real-time execution logs, credential refreshment, and upload status via the **GitHub Actions** tab.
+
+**Last Strategy Update:** March 2026.
