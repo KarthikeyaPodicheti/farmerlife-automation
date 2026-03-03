@@ -20,23 +20,38 @@ PROCESSED_LOG = 'processed_videos.json'
 TOKEN_FILE = 'token.pickle' 
 SERVICE_ACCOUNT = 'service-account-key.json'
 
-# FARMERLIFE2.0 Video Titles (customize for your farming content)
+# FARMERLIFE2.0 Video Titles (Psychologically triggering & Evergreen)
 TITLES = [
-    "This Farming Technique Will SHOCK You! 🚜",
-    "You Won't Believe What Happened on the Farm!",
-    "The Truth About Modern Farming Nobody Tells You",
-    "I Tried This Farm Hack For 30 Days...",
-    "What Happens Next Will Change Everything",
-    "They Didn't Want You To See This Farm Secret",
-    "This Is Why Small Farms Are Failing",
-    "The Hidden Truth About Farm Life",
-    "I Can't Believe This Farming Method Worked",
-    "This Will Transform Your Farm Forever",
-    "The Future of Farming is HERE! 🌾",
-    "Farm Life Reality Check - Raw Truth",
-    "This Farming Innovation is INSANE",
-    "Why I Quit My Job to Start Farming",
-    "The Dark Side of Industrial Agriculture",
+    "You won't believe what happened in the village today 😭",
+    "They found this while digging the farm dirt 🤯",
+    "The villagers were shocked when they saw this tree 😭",
+    "This stray animal did the unthinkable on the farm 🤯",
+    "Watch what this animal did to save the farm 😭",
+    "Nobody believed this could happen in real life 🤯",
+    "They abandoned the land, but then this grew 😭",
+    "This trick saved the dying plant just in time 🤯",
+    "The animal refused to leave the crop field 😭",
+    "Everyone laughed at the small plant, then this happened 🤯",
+    "The village secret was finally caught on camera 😭",
+    "They poured this on the soil and couldn't believe it 🤯",
+    "A massive storm came, but the animals did this 😭",
+    "This strange creature was found near the harvest 🤯",
+    "The sad truth about what animals do when we aren't looking 😭",
+    "He watered his dying plant every day and this grew 😭",
+    "This is why you never dig too deep on a farm 🤯",
+    "A strange animal destroyed the cornfield, see what happened 🤯",
+    "They couldn't figure out what was eating the crops 😭",
+    "How this tiny village survived the worst drought 😭",
+    "The neighbors tried to ruin his harvest, watch till the end 😭",
+    "She bought an abandoned farm, what she found is shocking 😭",
+    "This one trick saved the entire village 😭",
+    "They told him he could never grow watermelons here 🤯",
+    "What he dug up in the potato field shocked everyone 😭",
+    "The animals warned him about the storm 🤯",
+    "He rescued a trapped animal in his wheat field 😭",
+    "This giant vegetable broke the village record 🤯",
+    "They thought the land was cursed until he planted this 😭",
+    "You will cry when you see what this animal did for the farm 😭",
 ]
 
 def get_youtube_creds():
@@ -145,29 +160,28 @@ def upload_video():
     # Generate title with sequential number
     title = random.choice(TITLES) + f" #{len(processed)+1}"
     
-    # Farming-focused description
-    description = f"""🚜 Welcome to FARMERLIFE2.0! 
+    # Psychologically engaging description for high retention
+    description = f"""Wait for the end... 🤯 The reality of farm life is not what you think! 
+    
+In this video, we uncover the hidden truths and incredible moments that happen on the farm every single day. From struggling crops to miraculous harvests, you won't believe what happens next! 😭🌾
 
-Join our farming community for the latest agricultural insights, sustainable farming practices, and real farm life experiences.
+If you love satisfying farming videos, real village life, and incredible agriculture stories, you are in the right place!
 
-🌾 What you'll get:
-• Practical farming tips and techniques
-• Equipment reviews and recommendations  
-• Sustainable agriculture methods
-• Real stories from the field
+👇 Do NOT click this link unless you love farming!
+👉 https://youtube.com/@FARMERLIFE2.0?sub_confirmation=1
 
-Subscribe for daily farming content! 🔔
+Subscribe now to see what we grow next! 🔔
 
-#Farming #Agriculture #FarmLife #Sustainable #FARMERLIFE2.0"""
+#shorts #farming #agriculture #farmlife #satisfying #village #farmer"""
     
     body = {
         'snippet': {
             'title': title,
             'description': description,
             'tags': [
-                'farming', 'agriculture', 'farmlife', 'sustainable', 
-                'farmers', 'crops', 'rural', 'food', 'harvest',
-                'tractor', 'equipment', 'organic', 'homestead'
+                'shorts', 'farming', 'agriculture', 'farmlife', 'satisfying',
+                'village', 'farmer', 'harvest', 'tractor', 'rural',
+                'success', 'story', 'trending', 'viral', 'motivation'
             ],
             'categoryId': '26',  # Howto & Style
         },
