@@ -37,15 +37,14 @@ The system is built on a modular architecture that ensures high availability and
 
 ---
 
-## 📊 Distribution Strategy (3x Daily)
+## 📊 Distribution Strategy (2x Daily)
 
 The system is engineered to capture peak global browsing traffic using a multi-phase distribution schedule:
 
 | Phase | IST | UTC | Objective |
 |:---:|:---:|:---:|:---|
-| **Early** | 10:30 AM | `0 05:00` | Capture morning transit engagement |
-| **Peak** | 02:00 PM | `0 08:30` | Target international afternoon traffic |
-| **Prime** | 09:30 PM | `0 16:00` | Maximize high-retention evening viewership |
+| **Peak** | 02:30 PM | `0 09:00` | Target afternoon engagement |
+| **Prime** | 09:00 PM | `30 15:30` | Maximize high-retention evening viewership |
 
 ---
 

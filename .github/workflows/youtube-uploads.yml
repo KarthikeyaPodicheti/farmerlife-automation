@@ -5,10 +5,9 @@ permissions:
 
 on:
   schedule:
-    # 3 uploads per day at 10:30 AM, 2:00 PM, and 9:30 PM IST
-    - cron: '0 5 * * *'    # 10:30 AM IST
-    - cron: '30 8 * * *'   # 2:00 PM IST  
-    - cron: '0 16 * * *'   # 9:30 PM IST
+    # 2 uploads per day at 2:30 PM and 9:00 PM IST
+    - cron: '0 9 * * *'    # 2:30 PM IST (09:00 UTC)
+    - cron: '30 15 * * *'  # 9:00 PM IST (15:30 UTC)
   workflow_dispatch:       # Manual trigger
 
 jobs:
