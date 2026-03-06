@@ -259,20 +259,26 @@ RADHE RADHE 🙏💐
         "story hindi", "latest hindi story", "kids hindi story", "moral hindi story"
     ]
     
-    # Shuffle and pick tags ensuring we stay under the strict 500 char YouTube limit
-    random.shuffle(all_tags)
+    # Clean up tags, remove duplicates and stay perfectly within YouTube limits
+    # Commas and periods in tags consistently trigger the 400 invalidTags error 
+    clean_all_tags = set(t.replace(".", "").replace(",", "").replace("<", "").replace(">", "").strip() for t in all_tags)
+    unique_tags = list(clean_all_tags)
+    random.shuffle(unique_tags)
+    
     selected_tags: list[str] = []
     current_length: int = 0
-    for tag in all_tags:
-        clean_tag = tag.replace(".", "").replace("<", "").replace(">", "").strip()
-        if not clean_tag:
+    
+    for tag in unique_tags:
+        if not tag:
             continue
+            
+        # 1 char for commas in the YouTube UI separator
+        added_len = len(tag) + 1  
         
-        # approximate length tracking (comma separated length)
-        # Adding 1 for the comma spacing normally used by YouTube length counting
-        if current_length + len(clean_tag) + 1 <= 480:
-            selected_tags.append(clean_tag)
-            current_length += len(clean_tag) + 1
+        # Max of 15 tags, and comfortably below the 500 API character limit
+        if len(selected_tags) < 15 and current_length + added_len <= 400:
+            selected_tags.append(tag)
+            current_length += added_len
 
     body = {
         'snippet': {
