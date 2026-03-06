@@ -146,8 +146,8 @@ def upload_video():
     
     print("\n[5/5] ⬆️ Uploading to FARMERLIFE2.0...")
     
-    # Generate title with sequential number
-    title = random.choice(TITLES) + f" #{len(processed)+1}"
+    # Generate title without sequential number
+    title = random.choice(TITLES)
     
     # Psychologically engaging description for high retention
     description = f"""Krishna Bhajan
