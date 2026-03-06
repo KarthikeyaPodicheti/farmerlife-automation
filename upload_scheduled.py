@@ -10,6 +10,7 @@ import pickle
 import random
 import sys
 from datetime import datetime
+from typing import Any, Set, Dict
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
@@ -20,38 +21,24 @@ PROCESSED_LOG = 'processed_videos.json'
 TOKEN_FILE = 'token.pickle' 
 SERVICE_ACCOUNT = 'service-account-key.json'
 
-# FARMERLIFE2.0 Video Titles (Psychologically triggering & Evergreen)
+# Video Titles
 TITLES = [
-    "You won't believe what happened in the village today 😭",
-    "They found this while digging the farm dirt 🤯",
-    "The villagers were shocked when they saw this tree 😭",
-    "This stray animal did the unthinkable on the farm 🤯",
-    "Watch what this animal did to save the farm 😭",
-    "Nobody believed this could happen in real life 🤯",
-    "They abandoned the land, but then this grew 😭",
-    "This trick saved the dying plant just in time 🤯",
-    "The animal refused to leave the crop field 😭",
-    "Everyone laughed at the small plant, then this happened 🤯",
-    "The village secret was finally caught on camera 😭",
-    "They poured this on the soil and couldn't believe it 🤯",
-    "A massive storm came, but the animals did this 😭",
-    "This strange creature was found near the harvest 🤯",
-    "The sad truth about what animals do when we aren't looking 😭",
-    "He watered his dying plant every day and this grew 😭",
-    "This is why you never dig too deep on a farm 🤯",
-    "A strange animal destroyed the cornfield, see what happened 🤯",
-    "They couldn't figure out what was eating the crops 😭",
-    "How this tiny village survived the worst drought 😭",
-    "The neighbors tried to ruin his harvest, watch till the end 😭",
-    "She bought an abandoned farm, what she found is shocking 😭",
-    "This one trick saved the entire village 😭",
-    "They told him he could never grow watermelons here 🤯",
-    "What he dug up in the potato field shocked everyone 😭",
-    "The animals warned him about the storm 🤯",
-    "He rescued a trapped animal in his wheat field 😭",
-    "This giant vegetable broke the village record 🤯",
-    "They thought the land was cursed until he planted this 😭",
-    "You will cry when you see what this animal did for the farm 😭",
+    "#asethetic",
+    "#songlyrics",
+    "#asethetic",
+    "#bulbul",
+    "#explore",
+    "#asethetic",
+    "#birdtrend",
+    "#asethetic",
+    "#exe",
+    "#asethetic",
+    "#asethetic",
+    "#noads",
+    "#asethetic",
+    "#asethetic",
+    "#aa23",    
+    "#exe",
 ]
 
 def get_youtube_creds():
@@ -66,12 +53,14 @@ def get_drive_creds():
         scopes=['https://www.googleapis.com/auth/drive.readonly']
     )
 
-def get_unprocessed_videos(drive):
+def get_unprocessed_videos(drive: Any):
     """Get list of videos not yet uploaded"""
-    processed = set()
+    processed: Set[str] = set()
     if os.path.exists(PROCESSED_LOG):
         with open(PROCESSED_LOG, 'r') as f:
-            processed = set(json.load(f))
+            data = json.load(f)
+            if isinstance(data, list):
+                processed = set(str(item) for item in data)
     
     videos = []
     page_token = None
@@ -161,27 +150,117 @@ def upload_video():
     title = random.choice(TITLES) + f" #{len(processed)+1}"
     
     # Psychologically engaging description for high retention
-    description = f"""Wait for the end... 🤯 The reality of farm life is not what you think! 
-    
-In this video, we uncover the hidden truths and incredible moments that happen on the farm every single day. From struggling crops to miraculous harvests, you won't believe what happens next! 😭🌾
-
-If you love satisfying farming videos, real village life, and incredible agriculture stories, you are in the right place!
-
-👇 Do NOT click this link unless you love farming!
-👉 https://youtube.com/@FARMERLIFE2.0?sub_confirmation=1
-
-Subscribe now to see what we grow next! 🔔
-
-#shorts #farming #agriculture #farmlife #satisfying #village #farmer"""
+    description = f"""Krishna Bhajan
+Krishna Song
+Radhe Krishna Bhajan
+Bhakti Song 2025
+Shri Krishna
+Krishna Devotional Song
+Radhe Radhe
+Krishna Bhakti Video
+Bhakti Geet
+Hare Krishna Mantra
+Krishna Bhajan Shorts
+Bhakti Ras
+New Krishna Bhajan 2025
+Krishna Kirtan
+Govinda Bhajan
+Lord Krishna Song
+Spiritual Songs
+Krishna Bhajan by @bhaktidhara1996
+🌸 परिचय (Introduction) – @bhaktidhara1996
+🙏 जय श्री कृष्णा 🙏
+आपका स्वागत है हमारे भक्ति परिवार @bhaktidhara1996 में।
+इस वीडियो में हम प्रस्तुत कर रहे हैं एक मधुर और दिव्य श्री कृष्ण भजन (Krishna Bhajan) जो आपके मन को शांति, आनंद और भक्ति से भर देगा।
+हमारा उद्देश्य है कि हर घर में श्रीकृष्ण की भक्ति गूंजे और हर हृदय में राधे कृष्ण का प्रेम प्रवाहित हो।
+🎶 कृष्ण भजन का महत्व (Importance of Krishna Bhajan)
+श्रीकृष्ण केवल एक देवता ही नहीं बल्कि प्रेम, करुणा, मित्रता और धर्म के प्रतीक हैं।
+कृष्ण भजन सुनने और गाने से:
+मन शांत होता है 🕊️
+हृदय में प्रेम बढ़ता है 💖
+आत्मा पवित्र होती है 🌸
+जीवन से नकारात्मकता दूर होती है 🙏
+इसी कारण हमारे चैनल @bhaktidhara1996 पर हम निरंतर नए Krishna Bhajan, Radhe Krishna Songs, Bhakti Geet और Kirtan अपलोड करते रहते हैं।
+📿 हरे कृष्ण महामंत्र (Hare Krishna Maha Mantra)
+👉 "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे।
+हरे राम हरे राम, राम राम हरे हरे।।"
+यह महामंत्र पूरे संसार का सबसे शक्तिशाली मंत्र है। जब भी आप इसे जपते हैं या सुनते हैं, तो मन अपने आप शांत हो जाता है और कृष्ण का प्रेम हृदय में उमड़ने लगता है।
+इस मंत्र की महिमा को फैलाने का प्रयास @bhaktidhara1996 परिवार करता है।
+🌺 कृष्ण कथा और लीला (Krishna Stories & Leelas)
+बाल्यकाल में श्रीकृष्ण ने माखन चुराकर सबको आनंदित किया।
+कालिया नाग का मर्दन कर भयमुक्ति दी।
+बंसी की मधुर तान से गोपियों को मोहित किया।
+कुरुक्षेत्र में अर्जुन को श्रीमद्भगवद गीता का उपदेश दिया।
+हर बार जब हम कृष्ण भजन गाते हैं, तो यह केवल संगीत नहीं बल्कि इन दिव्य लीलाओं का स्मरण होता है।
+@bhaktidhara1996 पर ऐसे ही भक्तिपूर्ण गीतों और कथाओं के माध्यम से हम आपके हृदय को कृष्णमय बनाने का प्रयास करते हैं।
+🎼 हमारे भजन (Our Bhajan Collection @bhaktidhara1996)
+👉 Krishna Bhajan
+👉 Radhe Krishna Bhajan
+👉 Govind Naam Sankirtan
+👉 Madhur Bhakti Geet
+👉 Hare Krishna Mantra Japa
+हर भजन आपको प्रभु के और करीब ले जाने के लिए बनाया गया है।
+🌸 भक्ति का मार्ग (Path of Devotion)
+भक्ति ही सबसे सरल मार्ग है भगवान तक पहुँचने का।
+कृष्ण भजन इसी भक्ति का मुख्य साधन है।
+जब हम सच्चे हृदय से गाते हैं, तो कृष्ण स्वयं हमारे दुख हर लेते हैं।
+@bhaktidhara1996 चैनल इसी भक्ति मार्ग पर आपका साथी है।
+Krishna Bhajan, Krishna Song, Radhe Krishna Bhajan, Bhakti Song 2025, Shri Krishna, Krishna Devotional Song, Radhe Radhe, Krishna Bhakti Video, Bhakti Geet, Hare Krishna Mantra, Krishna Bhajan Shorts, Bhakti Ras, New Krishna Bhajan 2025, Krishna Kirtan, Govinda Bhajan, Lord Krishna Song, Spiritual Songs, Krishna Bhajan by @bhaktidhara1996
+🌟 हमारा उद्देश्य (Our Mission) – @bhaktidhara1996
+हमारा संकल्प है कि हर घर और हर दिल में कृष्ण भक्ति की धारा बहे।
+इसीलिए हम रोज़ाना नए-नए भजन, कीर्तन और कृष्ण गीत अपलोड करते हैं।
+👉 यदि आपको हमारे भजन पसंद आएं तो कृपया:
+✔️ चैनल @bhaktidhara1996 को सब्सक्राइब करें
+✔️ वीडियो को लाइक करें 👍
+✔️ दोस्तों और परिवार के साथ शेयर करें 🙏
+🙏 समापन (Conclusion)
+कृष्ण भजन केवल गीत नहीं है – यह प्रेम, आस्था और आत्मा की आवाज़ है।
+हर बार जब आप "राधे कृष्ण" का नाम लेते हैं, जीवन में नई रोशनी आती है।
+🌸 आइए मिलकर गाएं:
+"राधे कृष्णा... जय श्री कृष्णा... हरे कृष्णा..."
+जय श्री राधे कृष्णा 🙏 @bhaktidhara1996
+#bhaktidhara1996
+#fxyoeditz
+#flyxo
+#kumarsir
+#recitation
+#hindudeity
+#hindugod
+#spiritualvibes
+#sprituality
+#hindispirituality
+#marblemusic
+#marriagecentre
+⚠️ This video is made by AI and it has no relation with real life, this video is made only for educational and entertainment purpose.
+RADHE RADHE 🙏💐
+"""
     
     body = {
         'snippet': {
             'title': title,
             'description': description,
             'tags': [
-                'shorts', 'farming', 'agriculture', 'farmlife', 'satisfying',
-                'village', 'farmer', 'harvest', 'tractor', 'rural',
-                'success', 'story', 'trending', 'viral', 'motivation'
+                "Dp", "Poonam", "Shorts", "Short", "Ytshorts", "Gana", "Dp Poonam vlog",
+                "Dp Poonam vlog video", "Poonam bind", "YouTube shorts", "Trending shorts",
+                "Comedy shorts", "Funny video", "Viral video", "Bhojpuri song", "Bhojpuri gana",
+                "Bhojpuri new song", "Bhojpuri new song 2024", "Bhojpuri movie", "Bhojpuri film",
+                "Hindi gana", "Hindi song", "Hindi new song", "Hindi old song", "Hindi new song 2024",
+                "Hindi movie", "Hindi film", "Hindi picture", "Vlog video", "Dhobi geet",
+                "Hindi vlog", "Village mini vlog", "Pawan Singh", "ai generated story",
+                "ai generated video", "ai story generator", "hindi story shorts",
+                "create ai animated story video in hindi", "ai story video generator",
+                "ai generated image", "hindi story", "ai story video generator free",
+                "ai generated movie", "best hindi story", "hindi moral story",
+                "ai generated funny video", "story in hindi", "deer story in hindi",
+                "moral story in hindi", "hindi story for kids", "hindi story cartoon",
+                "how to humanize ai generated text", "love story hindi", "story in hindi.",
+                "ai animation story video generator free", "hindi stories", "best hindi stories",
+                "stories in hindi", "funny hindi stories", "hindi scary stories", "cartoon hindi stories",
+                "hindi stories for kids", "hindi moral stories", "hindi comedy stories", "hindi horror stories",
+                "kidlogics hindi stories", "hindi stories with moral", "moral stories in hindi",
+                "hindi cartoon stories", "hindi animated stories", "comedy stories in hindi",
+                "hindi short stories with moral", "moral stories hindi kahaniya", "stories",
+                "story hindi", "latest hindi story", "kids hindi story", "moral hindi story"
             ],
             'categoryId': '26',  # Howto & Style
         },
@@ -197,7 +276,7 @@ Subscribe now to see what we grow next! 🔔
     response = None
     while response is None:
         status, response = request.next_chunk()
-        if status:
+        if status is not None:
             progress = int(status.progress() * 100)
             print(f"  📤 Upload progress: {progress}%")
     
@@ -219,7 +298,7 @@ Subscribe now to see what we grow next! 🔔
         'title': title,
         'video_id': video_id,
         'drive_file': video['name'],
-        'file_size_mb': round(size_mb, 1)
+        'file_size_mb': float(round(float(size_mb), 1))
     })
     
     with open('upload_history.json', 'w') as f:
@@ -227,16 +306,20 @@ Subscribe now to see what we grow next! 🔔
     
     # Update daily upload count
     today = datetime.now().strftime('%Y-%m-%d')
-    daily_count = {'date': today, 'count': 0}
+    daily_count: Dict[str, Any] = {'date': today, 'count': 0}
     
     if os.path.exists('daily_upload_count.json'):
         with open('daily_upload_count.json', 'r') as f:
-            daily_count = json.load(f)
+            loaded_count = json.load(f)
+            if isinstance(loaded_count, dict):
+                daily_count = loaded_count
     
     if daily_count.get('date') != today:
         daily_count = {'date': today, 'count': 0}
     
-    daily_count['count'] += 1
+    current_count = daily_count.get('count', 0)
+    current_count_int = int(current_count) if isinstance(current_count, (str, int)) else 0
+    daily_count['count'] = current_count_int + 1
     
     with open('daily_upload_count.json', 'w') as f:
         json.dump(daily_count, f, indent=2)
