@@ -235,33 +235,50 @@ Krishna Bhajan, Krishna Song, Radhe Krishna Bhajan, Bhakti Song 2025, Shri Krish
 RADHE RADHE 🙏💐
 """
     
+    all_tags = [
+        "Dp", "Poonam", "Shorts", "Short", "Ytshorts", "Gana", "Dp Poonam vlog",
+        "Dp Poonam vlog video", "Poonam bind", "YouTube shorts", "Trending shorts",
+        "Comedy shorts", "Funny video", "Viral video", "Bhojpuri song", "Bhojpuri gana",
+        "Bhojpuri new song", "Bhojpuri new song 2024", "Bhojpuri movie", "Bhojpuri film",
+        "Hindi gana", "Hindi song", "Hindi new song", "Hindi old song", "Hindi new song 2024",
+        "Hindi movie", "Hindi film", "Hindi picture", "Vlog video", "Dhobi geet",
+        "Hindi vlog", "Village mini vlog", "Pawan Singh", "ai generated story",
+        "ai generated video", "ai story generator", "hindi story shorts",
+        "create ai animated story video in hindi", "ai story video generator",
+        "ai generated image", "hindi story", "ai story video generator free",
+        "ai generated movie", "best hindi story", "hindi moral story",
+        "ai generated funny video", "story in hindi", "deer story in hindi",
+        "moral story in hindi", "hindi story for kids", "hindi story cartoon",
+        "how to humanize ai generated text", "love story hindi", "story in hindi",
+        "ai animation story video generator free", "hindi stories", "best hindi stories",
+        "stories in hindi", "funny hindi stories", "hindi scary stories", "cartoon hindi stories",
+        "hindi stories for kids", "hindi moral stories", "hindi comedy stories", "hindi horror stories",
+        "kidlogics hindi stories", "hindi stories with moral", "moral stories in hindi",
+        "hindi cartoon stories", "hindi animated stories", "comedy stories in hindi",
+        "hindi short stories with moral", "moral stories hindi kahaniya", "stories",
+        "story hindi", "latest hindi story", "kids hindi story", "moral hindi story"
+    ]
+    
+    # Shuffle and pick tags ensuring we stay under the strict 500 char YouTube limit
+    random.shuffle(all_tags)
+    selected_tags: list[str] = []
+    current_length: int = 0
+    for tag in all_tags:
+        clean_tag = tag.replace(".", "").replace("<", "").replace(">", "").strip()
+        if not clean_tag:
+            continue
+        
+        # approximate length tracking (comma separated length)
+        # Adding 1 for the comma spacing normally used by YouTube length counting
+        if current_length + len(clean_tag) + 1 <= 480:
+            selected_tags.append(clean_tag)
+            current_length += len(clean_tag) + 1
+
     body = {
         'snippet': {
             'title': title,
             'description': description,
-            'tags': [
-                "Dp", "Poonam", "Shorts", "Short", "Ytshorts", "Gana", "Dp Poonam vlog",
-                "Dp Poonam vlog video", "Poonam bind", "YouTube shorts", "Trending shorts",
-                "Comedy shorts", "Funny video", "Viral video", "Bhojpuri song", "Bhojpuri gana",
-                "Bhojpuri new song", "Bhojpuri new song 2024", "Bhojpuri movie", "Bhojpuri film",
-                "Hindi gana", "Hindi song", "Hindi new song", "Hindi old song", "Hindi new song 2024",
-                "Hindi movie", "Hindi film", "Hindi picture", "Vlog video", "Dhobi geet",
-                "Hindi vlog", "Village mini vlog", "Pawan Singh", "ai generated story",
-                "ai generated video", "ai story generator", "hindi story shorts",
-                "create ai animated story video in hindi", "ai story video generator",
-                "ai generated image", "hindi story", "ai story video generator free",
-                "ai generated movie", "best hindi story", "hindi moral story",
-                "ai generated funny video", "story in hindi", "deer story in hindi",
-                "moral story in hindi", "hindi story for kids", "hindi story cartoon",
-                "how to humanize ai generated text", "love story hindi", "story in hindi.",
-                "ai animation story video generator free", "hindi stories", "best hindi stories",
-                "stories in hindi", "funny hindi stories", "hindi scary stories", "cartoon hindi stories",
-                "hindi stories for kids", "hindi moral stories", "hindi comedy stories", "hindi horror stories",
-                "kidlogics hindi stories", "hindi stories with moral", "moral stories in hindi",
-                "hindi cartoon stories", "hindi animated stories", "comedy stories in hindi",
-                "hindi short stories with moral", "moral stories hindi kahaniya", "stories",
-                "story hindi", "latest hindi story", "kids hindi story", "moral hindi story"
-            ],
+            'tags': selected_tags,
             'categoryId': '26',  # Howto & Style
         },
         'status': {
