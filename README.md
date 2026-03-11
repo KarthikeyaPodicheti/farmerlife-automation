@@ -30,6 +30,7 @@ The system is built on a modular architecture that ensures high availability and
 - **CI/CD Orchestration:** Powered by **GitHub Actions**, the system executes on a high-precision `cron` schedule.
 - **State Management:** Implements a JSON-based persistent state machine to track `processed_videos`. This prevents collisions and ensures 100% unique daily uploads.
 - **Dynamic Metadata Injection:** An algorithmic title/description generator that uses the **"Curiosity Gap" psychological model** to maximize CTR (Click-Through Rate).
+- **Delayed High-Definition Release:** Videos are programmatically uploaded as `Private` and scheduled exactly 2 hours into the future for their `Public` release. This guarantees viewers always experience the maximum 4K/1080p rendering quality.
 
 ### 3. Security & Credentials
 - **Encrypted Secrets:** All sensitive API keys and OAuth tokens are stored within **GitHub Encrypted Secrets**, decoded at runtime using Base64 injection to prevent credential leakage.
@@ -39,12 +40,12 @@ The system is built on a modular architecture that ensures high availability and
 
 ## 📊 Distribution Strategy (2x Daily)
 
-The system is engineered to capture peak global browsing traffic using a multi-phase distribution schedule:
+The system is engineered to capture peak global browsing traffic using a multi-phase distribution schedule featuring a **built-in 2-hour preprocessing delay** to ensure optimal video quality:
 
-| Phase | IST | UTC | Objective |
-|:---:|:---:|:---:|:---|
-| **Peak** | 02:30 PM | `0 09:00` | Target afternoon engagement |
-| **Prime** | 09:00 PM | `30 15:30` | Maximize high-retention evening viewership |
+| Phase | Upload Run (IST) | Publish Time (IST) | UTC Cron | Objective |
+|:---:|:---:|:---:|:---:|:---|
+| **Morning** | 08:00 AM | **10:00 AM** | `30 02:00` | Target peak morning subscriber engagement |
+| **Evening** | 05:00 PM | **07:00 PM** | `30 11:00` | Maximize high-retention evening viewership |
 
 ---
 
