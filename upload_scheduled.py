@@ -23,22 +23,21 @@ SERVICE_ACCOUNT = 'service-account-key.json'
 
 # Video Titles
 TITLES = [
-    "#asethetic",
-    "#songlyrics",
-    "#asethetic",
-    "#bulbul",
-    "#explore",
-    "#asethetic",
-    "#birdtrend",
-    "#asethetic",
-    "#exe",
-    "#asethetic",
-    "#asethetic",
-    "#noads",
-    "#asethetic",
-    "#asethetic",
-    "#aa23",    
-    "#exe",
+    "Wait for the end... 🤯 #shorts",
+    "This will change your life 🌸 #krishna",
+    "Don't scroll past this blessing 🙏",
+    "Ultimate Peace 🕊️ Radhe Radhe",
+    "Most beautiful video you'll see today 🌺",
+    "A special message just for you... 💌",
+    "Find your inner peace here 🦚 #aesthetic",
+    "This is so relaxing... 🍃",
+    "Start your day with this beautiful vibe 🌅",
+    "The 1 thing you needed to see today ❤️",
+    "Pure bliss 🎶 #devotion",
+    "You won't believe this! 😲 #story",
+    "Just listen to this magic... ✨",
+    "इस वीडियो ने सबका दिल जीत लिया ❤️",
+    "एक बार जरूर देखें 🙏 #radheradhe",
 ]
 
 def get_youtube_creds():
