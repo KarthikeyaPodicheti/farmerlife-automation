@@ -9,7 +9,7 @@ import json
 import pickle
 import random
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any, Set, Dict
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -280,6 +280,9 @@ RADHE RADHE 🙏💐
             selected_tags.append(tag)
             current_length += added_len
 
+    # Schedule the video to be published 2 hours from now to allow for HD/4K processing
+    publish_time = (datetime.utcnow() + timedelta(hours=2)).isoformat() + 'Z'
+
     body = {
         'snippet': {
             'title': title,
@@ -288,7 +291,8 @@ RADHE RADHE 🙏💐
             'categoryId': '26',  # Howto & Style
         },
         'status': {
-            'privacyStatus': 'public',
+            'privacyStatus': 'private',
+            'publishAt': publish_time,
             'madeForKids': False
         }
     }

@@ -5,9 +5,10 @@ permissions:
 
 on:
   schedule:
-    # 2 uploads per day at 2:30 PM and 9:00 PM IST
-    - cron: '0 9 * * *'    # 2:30 PM IST (09:00 UTC)
-    - cron: '30 15 * * *'  # 9:00 PM IST (15:30 UTC)
+    # 2 uploads per day running 2 hours BEFORE target publish times (8:00 AM and 5:00 PM IST)
+    # Target publish times are 10:00 AM IST and 7:00 PM IST.
+    - cron: '30 2 * * *'    # 8:00 AM IST (02:30 UTC) - Published at 10:00 AM IST
+    - cron: '30 11 * * *'   # 5:00 PM IST (11:30 UTC) - Published at 7:00 PM IST
   workflow_dispatch:       # Manual trigger
 
 jobs:
