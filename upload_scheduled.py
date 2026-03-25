@@ -145,8 +145,24 @@ def upload_video():
     
     print("\n[5/5] ⬆️ Uploading to FARMERLIFE2.0...")
     
-    # Generate title without sequential number
-    title = random.choice(TITLES)
+    # Generate title with random hashtags
+    # Add hashtags sets
+    HASHTAG_SETS = [
+        "#ai #shorts #farmer #animals",
+        "#ai #shorts #animals #trending",
+        "#ai #shorts #farmer #trending",
+        "#ai #shorts #trending #viral"
+    ]
+    
+    base_title = random.choice(TITLES)
+    random_hashtags = random.choice(HASHTAG_SETS)
+    
+    # Combine and ensure it stays under 100 characters (YouTube limit)
+    title = f"{base_title} {random_hashtags}"
+    if len(title) > 100:
+        title = title[:97] + "..."
+    
+    print(f"  📝 Generated Title: {title}")
     
     # Psychologically engaging description for high retention
     description = f"""Krishna Bhajan
