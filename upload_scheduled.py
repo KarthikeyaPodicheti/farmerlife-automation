@@ -165,7 +165,9 @@ def upload_video():
     print(f"  📝 Generated Title: {title}")
     
     # Psychologically engaging description for high retention
-    description = f"""Krishna Bhajan
+    description = f"""{title}
+
+Krishna Bhajan
 Krishna Song
 Radhe Krishna Bhajan
 Bhakti Song 2025
